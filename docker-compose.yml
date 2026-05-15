@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  # --- SEU Banco de Dados PostgreSQL Principal ---
+  db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:22.0.1
+    container_name: keycloak
+    command: start-dev
+    ports:
+      - "${KEYCLOAK_PORT}:8080"
+    environment:
+      KEYCLOAK_ADMIN: ${KEYCLOAK_USER}
+      KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
+
+  # --- Kafka (Confluent com KRaft) ---
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka_broker
+    restart: always
+    ports:
+      - "${KAFKA_PORT}:9092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:29093'
+      KAFKA_LISTENERS: 'PLAINTEXT://kafka:29092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:9092'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:${KAFKA_PORT}'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      CLUSTER_ID: ${KAFKA_CLUSTER_ID}
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+
+  # --- Banco de Dados Interno do Conduktor ---
+  conduktor-db:
+    image: postgres:15-alpine
+    container_name: conduktor_db
+    restart: always
+    environment:
+      POSTGRES_USER: conduktor
+      POSTGRES_PASSWORD: conduktor
+      POSTGRES_DB: conduktor
+    volumes:
+      - conduktor_data:/var/lib/postgresql/data
+
+  # --- Interface Gráfica: Conduktor Console ---
+  conduktor-console:
+    image: conduktor/conduktor-console:latest
+    container_name: conduktor_console
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      # Passando o banco de dados interno criado acima para o Conduktor:
+      - CDK_DATABASE_URL=postgresql://conduktor:conduktor@conduktor-db:5432/conduktor
+      - CDK_CLUSTERS_0_ID=local
+      - CDK_CLUSTERS_0_NAME=MeuClusterLocal
+      - CDK_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:29092
+    depends_on:
+      - kafka
+      - conduktor-db
+
+volumes:
+  postgres_data:
+    driver: local
+  kafka_data:
+    driver: local
+  conduktor_data:
+    driver: local
