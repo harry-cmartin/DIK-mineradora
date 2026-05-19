@@ -1,0 +1,240 @@
+{
+  "info": {
+    "_postman_id": "9afdbcc0-3e15-4418-959e-64231c89a44d",
+    "name": "Dik-mineradora",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43660408",
+    "_collection_link": "https://go.postman.co/collection/43660408-9afdbcc0-3e15-4418-959e-64231c89a44d?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Criar Proposta",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n    \"costumer\": \"Nova miner\",\n    \"priceTonne\": 165.8,\n    \"tonnes\": 789,\n    \"country\": \"EUA\",\n    \"proposalValidityDays\": 3\n\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8092/api/trade",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8092",
+          "path": [
+            "api",
+            "trade"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Proposta Costumer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n\n    \"costumer\": \"Nova miner\",\n    \"priceTonne\": 165.8,\n    \"tonnes\": 789,\n    \"country\": \"EUA\",\n    \"proposalValidityDays\": 3\n\n\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8092/api/trade",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8092",
+          "path": [
+            "api",
+            "trade"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Proposta",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaXzg2UlhKV0ptMmlkVW5rMUg4WkVXQU1zNm4tZ3c5ZTFoVzk2X25OOVFrIn0.eyJleHAiOjE3NzkwNDc2NTgsImlhdCI6MTc3OTA0NzM1OCwianRpIjoiMTJhNzAwZTEtODVlYy00YjAxLWE0NGYtN2QzYzNlN2IwOGU0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDkxL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6Ijc3ZjJkYzFjLTViMDktNGQwOS04OWEzLWFlM2I4NmJhZDJjNSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiIyYWFkN2NkOS0yMmM4LTRlMTItODEwNC1kN2JmNDcwZTczOWEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsibWFuYWdlciIsIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1xdWFya3VzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIyYWFkN2NkOS0yMmM4LTRlMTItODEwNC1kN2JmNDcwZTczOWEiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJtaWEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtaWthIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoibWlhIn0.il14y4Ik7W-ZQb67eDkgZ5Y4S3lPvzrtczBp6x4YvY_3ITy_GKDzhpYiP9nvzwClk-3NtmnxDKdkvBHrMM1h_Z2AOj3fdM50K4MwFA_U_0o1_Eu0g9GelFMfIVgPRBNctyPQHf0DzbRvDQpCCKazu30XCdkkP3aGx1W8lMcKTUGulITUM06pnuIY2djDHR2Gv3y4_9386DTv2vqTJb8rkMnpbK5O7hlUZrTlUFoLexNWX9HrTljLkZIe15dU2i7_YnUG03PNg-CymwzxPdXByRtDF4m-TY7Ld0Ryhwe6MXlg0ras7S1WQYKg1FQlj1tFk8jc_mtDw7EhotXfKN4QDg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8092/api/trade/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8092",
+          "path": [
+            "api",
+            "trade",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deleta Proposta",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJaXzg2UlhKV0ptMmlkVW5rMUg4WkVXQU1zNm4tZ3c5ZTFoVzk2X25OOVFrIn0.eyJleHAiOjE3NzkwNDc2NTgsImlhdCI6MTc3OTA0NzM1OCwianRpIjoiMTJhNzAwZTEtODVlYy00YjAxLWE0NGYtN2QzYzNlN2IwOGU0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDkxL3JlYWxtcy9xdWFya3VzIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6Ijc3ZjJkYzFjLTViMDktNGQwOS04OWEzLWFlM2I4NmJhZDJjNSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImJhY2tlbmQtc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiIyYWFkN2NkOS0yMmM4LTRlMTItODEwNC1kN2JmNDcwZTczOWEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsibWFuYWdlciIsIm9mZmxpbmVfYWNjZXNzIiwiZGVmYXVsdC1yb2xlcy1xdWFya3VzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiIyYWFkN2NkOS0yMmM4LTRlMTItODEwNC1kN2JmNDcwZTczOWEiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJtaWEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJtaWthIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoibWlhIn0.il14y4Ik7W-ZQb67eDkgZ5Y4S3lPvzrtczBp6x4YvY_3ITy_GKDzhpYiP9nvzwClk-3NtmnxDKdkvBHrMM1h_Z2AOj3fdM50K4MwFA_U_0o1_Eu0g9GelFMfIVgPRBNctyPQHf0DzbRvDQpCCKazu30XCdkkP3aGx1W8lMcKTUGulITUM06pnuIY2djDHR2Gv3y4_9386DTv2vqTJb8rkMnpbK5O7hlUZrTlUFoLexNWX9HrTljLkZIe15dU2i7_YnUG03PNg-CymwzxPdXByRtDF4m-TY7Ld0Ryhwe6MXlg0ras7S1WQYKg1FQlj1tFk8jc_mtDw7EhotXfKN4QDg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8092/api/trade/remove/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8092",
+          "path": [
+            "api",
+            "trade",
+            "remove",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obter Token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "harry",
+              "type": "text",
+              "uuid": "cb401c79-6e03-4c0e-a15b-6682f3e9bb1e"
+            },
+            {
+              "key": "password",
+              "value": "1234",
+              "type": "text",
+              "uuid": "89d27260-b5bd-45eb-a76a-ec0b123d1ad4"
+            },
+            {
+              "key": "grant_type",
+              "value": "password",
+              "type": "text",
+              "uuid": "1a095853-5e99-4eee-ad5e-ecccace5ab79"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8091/realms/quarkus/protocol/openid-connect/token",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8091",
+          "path": [
+            "realms",
+            "quarkus",
+            "protocol",
+            "openid-connect",
+            "token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obter Relatorio",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8092/api/records/report",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8092",
+          "path": [
+            "api",
+            "records",
+            "report"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Obter Relatorio JSON",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8092/api/records/report",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8092",
+          "path": [
+            "api",
+            "records",
+            "report"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
