@@ -38,7 +38,8 @@ public class ProposalController {
             return Response.ok(Response.Status.CREATED).build();
 
         } catch (Exception e) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            Log.error("Erro ao processar a criação de proposta", e);
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
 
         }
 

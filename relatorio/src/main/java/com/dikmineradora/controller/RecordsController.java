@@ -27,8 +27,7 @@ public class RecordsController {
     JsonWebToken jwt;
 
     @GET
-    @Path("/reports")
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    @Path("/data")
     @RolesAllowed("manager")
     public List<RecordsDto> generateReport(){
 

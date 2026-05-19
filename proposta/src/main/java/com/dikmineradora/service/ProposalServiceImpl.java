@@ -6,6 +6,7 @@ import com.dikmineradora.entity.ProposalEntity;
 import com.dikmineradora.mapper.ProposalMapper;
 import com.dikmineradora.message.KafkaEvents;
 import com.dikmineradora.repository.ProposalRepository;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -24,6 +25,7 @@ public class ProposalServiceImpl implements ProposalService{
     ProposalMapper proposalMapper;
 
     @Override
+    @WithSpan
     public ProposalDetailsDto findFullProposal(Long id) {
 
         ProposalEntity prop = proposalRepository.findById(id);
@@ -41,6 +43,7 @@ public class ProposalServiceImpl implements ProposalService{
 
     @Override
     @Transactional
+    @WithSpan
     public void createProposal(ProposalDetailsDto proposalDetailsDto) {
 
         ProposalDto proposal = buildandSaveProposal(proposalDetailsDto);
@@ -51,6 +54,7 @@ public class ProposalServiceImpl implements ProposalService{
 
     @Override
     @Transactional
+    @WithSpan
     public void removeProposal(Long id) {
 
         proposalRepository.deleteById(id);
@@ -59,6 +63,7 @@ public class ProposalServiceImpl implements ProposalService{
 
 
     @Transactional
+    @WithSpan
     private ProposalDto buildandSaveProposal(ProposalDetailsDto proposalDetailsDto) {
 
 

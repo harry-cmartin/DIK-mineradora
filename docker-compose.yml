@@ -15,15 +15,29 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
+
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true # Muito importante: Habilita o recebimento de OpenTelemetry (OTLP)
+    ports:
+      - "16686:16686" # Porta da Interface de Usuário (Acesse no navegador)
+      - "4317:4317"   # Porta OTLP via gRPC (Padrão que o Quarkus vai usar para enviar os dados)
+      - "4318:4318"   # Porta OTLP via HTTP (Opcional, caso use HTTP)
+
   keycloak:
     image: quay.io/keycloak/keycloak:22.0.1
     container_name: keycloak
-    command: start-dev
+    command: start-dev --import-realm
     ports:
       - "${KEYCLOAK_PORT}:8080"
     environment:
       KEYCLOAK_ADMIN: ${KEYCLOAK_USER}
       KEYCLOAK_ADMIN_PASSWORD: ${KEYCLOAK_PASSWORD}
+    volumes:
+      - ./dikmineradora_realm.json:/opt/keycloak/data/import/dikmineradora_realm.json
+
 
   # --- Kafka (Confluent com KRaft) ---
   kafka:

@@ -7,7 +7,7 @@ import com.dikmineradora.entity.QuotationEntity;
 import com.dikmineradora.entity.RecordsEntity;
 import com.dikmineradora.repository.QuotationRepository;
 import com.dikmineradora.repository.RecordsRepository;
-import com.dikmineradora.utils.CSVhelper;
+import io.opentelemetry.instrumentation.annotations.WithSpan;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -28,6 +28,7 @@ public class RecordServiceImpl implements RecordService {
     RecordsRepository recordsRepository;
 
     @Override
+    @WithSpan
     public void buildRecords(ProposalDto proposalDto) {
 
         List<QuotationEntity> quotationEntities = quotationRepository.findAll().list();
@@ -47,6 +48,7 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     @Transactional
+    @WithSpan
     public void saveQuotation(QuotationDto quotationDto) {
 
         QuotationEntity quotationEntity = new QuotationEntity();
@@ -59,6 +61,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
+    @WithSpan
     public List<RecordsDto> generateRecordsData() {
 
         List<RecordsDto> recordsList = new ArrayList<>();
